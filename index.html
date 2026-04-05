@@ -172,7 +172,7 @@
             margin-bottom: 10px;
         }
 
-        /* Reels Section (Updated for Embeds) */
+        /* Reels Section - Playable on site */
         .reels-section {
             padding: 100px 50px;
             background-color: #0d0d0d;
@@ -188,25 +188,21 @@
         }
 
         .ig-embed-wrapper {
-            background: #1a1a1a;
+            background: #000;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            width: 320px; /* Fixed width to keep Reels looking neat */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            width: 320px; 
             height: 540px;
-            transition: transform 0.3s ease;
-        }
-
-        .ig-embed-wrapper:hover {
-            transform: translateY(-10px);
+            border: 1px solid #333;
         }
 
         .ig-embed-wrapper iframe {
-            width: 100%;
-            height: 100%;
+            width: calc(100% + 4px); /* Pushes borders outside the wrapper */
+            height: calc(100% + 4px);
+            margin: -2px 0 0 -2px;
             border: none;
-            /* Hide the scrollbar that instagram tries to inject */
-            overflow: hidden; 
+            background: #000;
         }
 
         /* Skills Section */
@@ -278,6 +274,7 @@
             <li><a href="#work">Work</a></li>
             <li><a href="#reels">Shorts</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="resume.html" style="color: #e50914;">Resume</a></li>
         </ul>
     </nav>
 
