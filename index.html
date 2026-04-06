@@ -122,17 +122,16 @@
             color: #e50914;
         }
 
-        /* Youtube Projects Section */
+        /* Long Form Project Section */
         .youtube-section {
             padding: 100px 50px;
             background-color: #111;
         }
 
         .yt-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -141,11 +140,7 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .yt-card:hover {
-            transform: translateY(-10px);
+            width: 100%;
         }
 
         .video-wrapper {
@@ -165,14 +160,15 @@
 
         .yt-info {
             padding: 20px;
+            text-align: center;
         }
 
         .yt-info h3 {
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            color: #fff;
         }
 
-        /* Reels Section - Playable on site */
+        /* Reels Section - Native Video Players */
         .reels-section {
             padding: 100px 50px;
             background-color: #0d0d0d;
@@ -180,29 +176,36 @@
 
         .reels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
             justify-items: center;
         }
 
-        .ig-embed-wrapper {
+        .native-video-wrapper {
             background: #000;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            width: 320px; 
-            height: 540px;
+            width: 100%;
+            max-width: 300px; 
+            aspect-ratio: 9 / 16; /* Perfect mobile video ratio */
             border: 1px solid #333;
+            transition: transform 0.3s ease;
         }
 
-        .ig-embed-wrapper iframe {
-            width: calc(100% + 4px); /* Pushes borders outside the wrapper */
-            height: calc(100% + 4px);
-            margin: -2px 0 0 -2px;
-            border: none;
-            background: #000;
+        .native-video-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4);
+            border-color: #e50914;
+        }
+
+        .native-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #111;
         }
 
         /* Skills Section */
@@ -262,7 +265,7 @@
             .hero p { font-size: 1.2rem; }
             nav { padding: 20px; flex-direction: column; gap: 15px; }
             nav ul { gap: 15px; }
-            .yt-grid, .reels-grid { grid-template-columns: 1fr; }
+            .reels-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -287,24 +290,15 @@
     </section>
 
     <section id="work" class="youtube-section">
-        <h2 class="section-title">Long-Form <span>Edits</span></h2>
+        <h2 class="section-title">Featured <span>Project</span></h2>
         <div class="yt-grid">
             
             <div class="yt-card">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/Pbbnu0ZCwT0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://drive.google.com/file/d/1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t/preview" allow="autoplay" allowfullscreen></iframe>
                 </div>
                 <div class="yt-info">
-                    <h3>Reacting to the Darkest Memes on the Internet</h3>
-                </div>
-            </div>
-
-            <div class="yt-card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/9Px3R7QPjuc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="yt-info">
-                    <h3>You Laugh, You Pay ₹100 || I'm Going Broke!</h3>
+                    <h3>Recent Long-Form Edit</h3>
                 </div>
             </div>
 
@@ -312,23 +306,35 @@
     </section>
 
     <section id="reels" class="reels-section">
-        <h2 class="section-title">Short-Form <span>Reels</span></h2>
+        <h2 class="section-title">Short-Form <span>Edits</span></h2>
         <div class="reels-grid">
             
-            <div class="ig-embed-wrapper">
-                <iframe src="https://www.instagram.com/reel/C8J4n2_x0MC/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <div class="native-video-wrapper">
+                <video controls playsinline preload="metadata">
+                    <source src="video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             
-            <div class="ig-embed-wrapper">
-                <iframe src="https://www.instagram.com/reel/DADtVUTRUSx/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <div class="native-video-wrapper">
+                <video controls playsinline preload="metadata">
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             
-            <div class="ig-embed-wrapper">
-                <iframe src="https://www.instagram.com/tv/CgUiYorj1bj/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <div class="native-video-wrapper">
+                <video controls playsinline preload="metadata">
+                    <source src="video3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             
-            <div class="ig-embed-wrapper">
-                <iframe src="https://www.instagram.com/reel/CeyUtgFjgPj/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <div class="native-video-wrapper">
+                <video controls playsinline preload="metadata">
+                    <source src="video4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
 
         </div>
