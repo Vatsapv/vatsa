@@ -14,7 +14,7 @@
         }
         
         body {
-            background-color: #0d0d0d;
+            background-color: #050505; /* Deep cinematic black */
             color: #f0f0f0;
             line-height: 1.6;
             overflow-x: hidden;
@@ -23,6 +23,17 @@
         a {
             text-decoration: none;
             color: inherit;
+        }
+
+        /* VFX Background Canvas */
+        #vfx-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Keeps it behind all your content */
+            pointer-events: none;
         }
 
         /* Navbar */
@@ -34,9 +45,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(13, 13, 13, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(15px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         nav .logo {
@@ -70,8 +82,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             padding: 0 20px;
+            background: transparent;
         }
 
         .hero h1 {
@@ -81,14 +93,12 @@
             background: linear-gradient(90deg, #fff, #888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1s ease;
         }
 
         .hero p {
             font-size: 1.5rem;
             color: #aaa;
             margin-bottom: 30px;
-            animation: fadeInUp 1s ease 0.5s both;
         }
 
         .hero .btn {
@@ -101,7 +111,6 @@
             border-radius: 30px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 1s ease 0.8s both;
         }
 
         .hero .btn:hover {
@@ -122,30 +131,33 @@
             color: #e50914;
         }
 
-        /* Video Card Styles (Custom Click-to-Play System) */
+        /* Video Card Styles */
         .custom-video-card {
-            background: #1a1a1a;
+            background: rgba(20, 20, 20, 0.8);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .custom-video-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4);
+            border-color: #e50914;
         }
 
         .cover-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
         }
 
@@ -164,8 +176,8 @@
             align-items: center;
             border-radius: 50%;
             font-size: 1.5rem;
-            padding-left: 5px; /* Center the play triangle */
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            padding-left: 5px; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
             transition: transform 0.2s ease, background 0.2s ease;
         }
 
@@ -187,14 +199,13 @@
         /* Long Form Project Section */
         .youtube-section {
             padding: 100px 50px;
-            background-color: #111;
         }
 
         .yt-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -207,20 +218,21 @@
             padding: 20px;
             text-align: center;
             width: 100%;
-            background: #1a1a1a;
+            background: rgba(20, 20, 20, 0.8);
             border-radius: 0 0 15px 15px;
-            margin-top: -5px;
+            margin-top: -15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
         }
 
         /* Reels Section */
         .reels-section {
             padding: 100px 50px;
-            background-color: #0d0d0d;
         }
 
         .reels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
@@ -229,15 +241,13 @@
 
         .reel-wrapper {
             width: 100%;
-            max-width: 320px;
-            aspect-ratio: 9 / 16; /* Perfect vertical mobile ratio */
-            border: 1px solid #333;
+            max-width: 300px;
+            aspect-ratio: 9 / 16; 
         }
 
         /* Skills Section */
         .skills-section {
             padding: 100px 50px;
-            background-color: #111;
             text-align: center;
         }
 
@@ -251,134 +261,6 @@
         }
 
         .skill-tag {
-            background: #222;
+            background: rgba(30, 30, 30, 0.8);
             padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: #e50914;
-            border-color: #e50914;
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #000;
-            color: #666;
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .hero p { font-size: 1.2rem; }
-            nav { padding: 20px; flex-direction: column; gap: 15px; }
-            nav ul { gap: 15px; }
-            .reels-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">VATSA.</div>
-        <ul>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#reels">Shorts</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="resume.html" style="color: #e50914;">Resume</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-        <h1>Vatsa</h1>
-        <p>Video Editor • Content Creator • Visual Storyteller</p>
-        <button class="btn" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'})">
-            View My Projects
-        </button>
-    </section>
-
-    <section id="work" class="youtube-section">
-        <h2 class="section-title">Featured <span>Project</span></h2>
-        <div class="yt-grid">
-            
-            <div class="custom-video-card long-form-wrapper" onclick="loadDriveVideo(this, '1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t&sz=w1200" alt="Long Form Cover">
-                <div class="play-btn">▶</div>
-            </div>
-            <div class="yt-info">
-                <h3>Recent Long-Form Edit</h3>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="reels" class="reels-section">
-        <h2 class="section-title">Short-Form <span>Edits</span></h2>
-        <div class="reels-grid">
-            
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY&sz=w800" alt="Reel 1 Cover">
-                <div class="play-btn">▶</div>
-            </div>
-            
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP&sz=w800" alt="Reel 2 Cover">
-                <div class="play-btn">▶</div>
-            </div>
-            
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1hYpASfF3ugxREdH9no-YW0Niaad0anjM')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1hYpASfF3ugxREdH9no-YW0Niaad0anjM&sz=w800" alt="Reel 3 Cover">
-                <div class="play-btn">▶</div>
-            </div>
-            
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY&sz=w800" alt="Reel 4 Cover">
-                <div class="play-btn">▶</div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="skills" class="skills-section">
-        <h2 class="section-title">My <span>Arsenal</span></h2>
-        <div class="skills-container">
-            <div class="skill-tag">Premiere Pro</div>
-            <div class="skill-tag">After Effects</div>
-            <div class="skill-tag">Long-Form Editing</div>
-            <div class="skill-tag">Short-Form Content (Reels/TikToks)</div>
-            <div class="skill-tag">Photography & Composition</div>
-            <div class="skill-tag">Image Editing</div>
-            <div class="skill-tag">Audio Mixing & SFX</div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Vatsa. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        function loadDriveVideo(element, videoId) {
-            // Replaces the cover image and play button with the actual Google Drive video player
-            element.innerHTML = `<iframe src="https://drive.google.com/file/d/${videoId}/preview?autoplay=1" allow="autoplay" allowfullscreen></iframe>`;
-        }
-    </script>
-</body>
-</html>
+            border-radius:
