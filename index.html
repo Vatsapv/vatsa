@@ -18,7 +18,6 @@
             color: #f0f0f0;
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
         a {
@@ -26,8 +25,8 @@
             color: inherit;
         }
 
-        /* Bulletproof Pure CSS VFX Background */
-        .vfx-background {
+        /* Premium VFX Canvas Background */
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,33 +34,6 @@
             height: 100vh;
             z-index: -1;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
-            overflow: hidden;
-        }
-
-        .ember {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #e50914;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #e50914, 0 0 20px #ff4d4d;
-            animation: floatUp infinite linear;
-            opacity: 0;
-        }
-
-        /* Generate random floating embers */
-        .ember:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-        .ember:nth-child(2) { left: 25%; animation-duration: 12s; animation-delay: 2s; }
-        .ember:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
-        .ember:nth-child(4) { left: 60%; animation-duration: 14s; animation-delay: 1s; }
-        .ember:nth-child(5) { left: 75%; animation-duration: 9s; animation-delay: 3s; }
-        .ember:nth-child(6) { left: 90%; animation-duration: 11s; animation-delay: 5s; }
-
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
         /* Navbar */
@@ -69,20 +41,38 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(15px);
             z-index: 1000;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        nav .logo {
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav .logo-img {
+            height: 45px;
+            width: 45px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        nav .logo-text {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 2px;
+            color: #fff;
+        }
+
+        nav .logo-text span {
             color: #e50914;
         }
 
@@ -118,6 +108,7 @@
             font-weight: 800;
             margin-bottom: 10px;
             color: #fff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
         .hero p {
@@ -136,11 +127,12 @@
             border-radius: 30px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
         }
 
         .hero .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.4);
+            box-shadow: 0 10px 25px rgba(229, 9, 20, 0.6);
         }
 
         /* Section Titles */
@@ -156,54 +148,29 @@
             color: #e50914;
         }
 
-        /* Video Card Styles */
-        .custom-video-card {
-            background: #111;
+        /* General Video Card Styles */
+        .yt-card {
+            background: rgba(15, 15, 15, 0.6);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            position: relative;
-            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #333;
         }
 
-        .custom-video-card:hover {
-            transform: translateY(-5px);
+        .yt-card:hover {
+            transform: translateY(-10px);
             border-color: #e50914;
+            box-shadow: 0 15px 35px rgba(229, 9, 20, 0.2);
         }
 
-        .cover-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+        .video-wrapper {
+            position: relative;
+            height: 0;
         }
 
-        .custom-video-card:hover .cover-img {
-            opacity: 1;
-        }
-
-        .play-btn {
-            position: absolute;
-            background: rgba(229, 9, 20, 0.9);
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            padding-left: 4px; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
-        }
-
-        .custom-video-card iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -213,62 +180,42 @@
             background: #000;
         }
 
-        /* Long Form Project Section */
-        .youtube-section {
-            padding: 100px 50px;
+        .yt-info {
+            padding: 20px;
+            text-align: center;
         }
 
-        .yt-grid {
+        .yt-info h3 {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* Long Form Specific */
+        .youtube-section { padding: 100px 50px; }
+        .yt-grid-long {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
+        .wrapper-16-9 { padding-bottom: 56.25%; /* 16:9 Aspect Ratio */ }
 
-        .long-form-wrapper {
-            width: 100%;
-            padding-bottom: 56.25%; 
-        }
-
-        .yt-info {
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-            background: #111;
-            border-radius: 0 0 15px 15px;
-            margin-top: -5px;
-            border: 1px solid #333;
-            border-top: none;
-        }
-
-        /* Reels Section */
-        .reels-section {
-            padding: 100px 50px;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .reels-grid {
+        /* Reels Specific */
+        .reels-section { padding: 100px 50px; background: rgba(0,0,0,0.3); }
+        .yt-grid-shorts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
             justify-items: center;
         }
-
-        .reel-wrapper {
-            width: 100%;
-            max-width: 280px;
-            aspect-ratio: 9 / 16; 
-        }
+        .wrapper-9-16 { padding-bottom: 177.77%; /* 9:16 Aspect Ratio */ }
+        .short-card { width: 100%; max-width: 320px; }
 
         /* Skills Section */
-        .skills-section {
-            padding: 100px 50px;
-            text-align: center;
-        }
-
+        .skills-section { padding: 100px 50px; text-align: center; }
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -277,20 +224,20 @@
             max-width: 800px;
             margin: 0 auto;
         }
-
         .skill-tag {
-            background: #222;
+            background: rgba(20, 20, 20, 0.8);
             padding: 12px 25px;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 600;
-            border: 1px solid #444;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
-
         .skill-tag:hover {
             background: #e50914;
             border-color: #e50914;
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -299,29 +246,25 @@
             padding: 30px;
             background: #000;
             color: #666;
-            border-top: 1px solid #222;
+            border-top: 1px solid #111;
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
             nav { padding: 20px; flex-direction: column; gap: 15px; }
-            .yt-grid { grid-template-columns: 1fr; }
+            .yt-grid-long, .yt-grid-shorts { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="vfx-background">
-        <div class="ember"></div>
-        <div class="ember"></div>
-        <div class="ember"></div>
-        <div class="ember"></div>
-        <div class="ember"></div>
-        <div class="ember"></div>
-    </div>
+    <canvas id="bg-canvas"></canvas>
 
     <nav>
-        <div class="logo">VATSA.</div>
+        <div class="logo-container">
+            <img src="" alt="Vatsa Logo" class="logo-img">
+            <div class="logo-text">VAT<span>SA.</span></div>
+        </div>
         <ul>
             <li><a href="#work">Work</a></li>
             <li><a href="#reels">Shorts</a></li>
@@ -331,8 +274,8 @@
     </nav>
 
     <section class="hero">
-        <h1>Vatsa</h1>
-        <p>Video Editor • Content Creator • Visual Storyteller</p>
+        <h1>Cinematic Edits.</h1>
+        <p>High-Retention Video Editor • Visual Storyteller</p>
         <button class="btn" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'})">
             View My Projects
         </button>
@@ -340,30 +283,27 @@
 
     <section id="work" class="youtube-section">
         <h2 class="section-title">Featured <span>Projects</span></h2>
-        <div class="yt-grid">
+        <div class="yt-grid-long">
             
-            <div>
-                <div class="custom-video-card long-form-wrapper" onclick="loadDriveVideo(this, '143jYaArAW-CAbP2MraPOctAp4OAptq3-')">
-                    <img class="cover-img" src="https://drive.google.com/thumbnail?id=143jYaArAW-CAbP2MraPOctAp4OAptq3-&sz=w1200" alt="Video 1">
-                    <div class="play-btn">▶</div>
+            <div class="yt-card">
+                <div class="video-wrapper wrapper-16-9">
+                    <iframe src="https://www.youtube.com/embed/gqEAYBRefgk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="yt-info"><h3>Cinematic Edit 1</h3></div>
+                <div class="yt-info"><h3>Cinematic Storytelling</h3></div>
             </div>
 
-            <div>
-                <div class="custom-video-card long-form-wrapper" onclick="loadDriveVideo(this, '1c4K3g3hOfyfhJ45cl4m1_-IvFzP-30YJ')">
-                    <img class="cover-img" src="https://drive.google.com/thumbnail?id=1c4K3g3hOfyfhJ45cl4m1_-IvFzP-30YJ&sz=w1200" alt="Video 2">
-                    <div class="play-btn">▶</div>
+            <div class="yt-card">
+                <div class="video-wrapper wrapper-16-9">
+                    <iframe src="https://www.youtube.com/embed/dIsbqTHlbBU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="yt-info"><h3>Cinematic Edit 2</h3></div>
+                <div class="yt-info"><h3>Audience Retention Masterclass</h3></div>
             </div>
 
-            <div>
-                <div class="custom-video-card long-form-wrapper" onclick="loadDriveVideo(this, '1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t')">
-                    <img class="cover-img" src="https://drive.google.com/thumbnail?id=1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t&sz=w1200" alt="Video 3">
-                    <div class="play-btn">▶</div>
+            <div class="yt-card">
+                <div class="video-wrapper wrapper-16-9">
+                    <iframe src="https://www.youtube.com/embed/GjESgvNQONE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="yt-info"><h3>Cinematic Edit 3</h3></div>
+                <div class="yt-info"><h3>The Complete YouTube Edit</h3></div>
             </div>
 
         </div>
@@ -371,26 +311,34 @@
 
     <section id="reels" class="reels-section">
         <h2 class="section-title">Short-Form <span>Edits</span></h2>
-        <div class="reels-grid">
+        <div class="yt-grid-shorts">
             
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY&sz=w800" alt="Reel 1">
-                <div class="play-btn">▶</div>
+            <div class="yt-card short-card">
+                <div class="video-wrapper wrapper-9-16">
+                    <iframe src="https://www.youtube.com/embed/1ARpaArR13Y" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="yt-info"><h3>High-Energy Anime Flow</h3></div>
             </div>
             
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP&sz=w800" alt="Reel 2">
-                <div class="play-btn">▶</div>
+            <div class="yt-card short-card">
+                <div class="video-wrapper wrapper-9-16">
+                    <iframe src="https://www.youtube.com/embed/BUk60GyAx_M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="yt-info"><h3>Seamless Visual Sync</h3></div>
             </div>
             
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1hYpASfF3ugxREdH9no-YW0Niaad0anjM')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1hYpASfF3ugxREdH9no-YW0Niaad0anjM&sz=w800" alt="Reel 3">
-                <div class="play-btn">▶</div>
+            <div class="yt-card short-card">
+                <div class="video-wrapper wrapper-9-16">
+                    <iframe src="https://www.youtube.com/embed/B0xV-jVhiKY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="yt-info"><h3>Impactful Beat Sync</h3></div>
             </div>
             
-            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY')">
-                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY&sz=w800" alt="Reel 4">
-                <div class="play-btn">▶</div>
+            <div class="yt-card short-card">
+                <div class="video-wrapper wrapper-9-16">
+                    <iframe src="https://www.youtube.com/embed/lzkLKo6-1fI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="yt-info"><h3>Commercial Event Promo</h3></div>
             </div>
 
         </div>
@@ -400,11 +348,11 @@
         <h2 class="section-title">My <span>Arsenal</span></h2>
         <div class="skills-container">
             <div class="skill-tag">Premiere Pro</div>
-            <div class="skill-tag">After Effects</div>
-            <div class="skill-tag">Long-Form Editing</div>
-            <div class="skill-tag">Short-Form Content (Reels)</div>
-            <div class="skill-tag">Photography & Composition</div>
-            <div class="skill-tag">Image Editing</div>
+            <div class="skill-tag">DaVinci Resolve</div>
+            <div class="skill-tag">CapCut Advanced</div>
+            <div class="skill-tag">Long-Form Storytelling</div>
+            <div class="skill-tag">Algorithm-Optimized Shorts</div>
+            <div class="skill-tag">Motion Graphics</div>
             <div class="skill-tag">Audio Mixing & SFX</div>
         </div>
     </section>
@@ -414,9 +362,69 @@
     </footer>
 
     <script>
-        function loadDriveVideo(element, videoId) {
-            element.innerHTML = `<iframe src="https://drive.google.com/file/d/${videoId}/preview?autoplay=1" allow="autoplay" allowfullscreen></iframe>`;
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            let numParticles = Math.min((canvas.width * canvas.height) / 15000, 100);
+            
+            for (let i = 0; i < numParticles; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 1.5 + 0.5
+                });
+            }
         }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw gradient nodes and lines
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off edges
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Draw Particle
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(229, 9, 20, 0.6)"; // Red nodes
+                ctx.fill();
+
+                // Connect to nearby nodes (Grafix.space effect)
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p.x - p2.x;
+                    let dy = p.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - (dist / 1500)})`; // Fading white lines
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
