@@ -122,6 +122,68 @@
             color: #e50914;
         }
 
+        /* Video Card Styles (Custom Click-to-Play System) */
+        .custom-video-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4);
+        }
+
+        .cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .custom-video-card:hover .cover-img {
+            opacity: 1;
+        }
+
+        .play-btn {
+            position: absolute;
+            background: rgba(229, 9, 20, 0.9);
+            color: #fff;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            padding-left: 5px; /* Center the play triangle */
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .custom-video-card:hover .play-btn {
+            transform: scale(1.1);
+            background: #ff0a16;
+        }
+
+        .custom-video-card iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+
         /* Long Form Project Section */
         .youtube-section {
             padding: 100px 50px;
@@ -130,45 +192,27 @@
 
         .yt-grid {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             max-width: 900px;
             margin: 0 auto;
         }
 
-        .yt-card {
-            background: #1a1a1a;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .long-form-wrapper {
             width: 100%;
-        }
-
-        .video-wrapper {
-            position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
         }
 
         .yt-info {
             padding: 20px;
             text-align: center;
+            width: 100%;
+            background: #1a1a1a;
+            border-radius: 0 0 15px 15px;
+            margin-top: -5px;
         }
 
-        .yt-info h3 {
-            font-size: 1.2rem;
-            color: #fff;
-        }
-
-        /* Reels Section - Native Video Players */
+        /* Reels Section */
         .reels-section {
             padding: 100px 50px;
             background-color: #0d0d0d;
@@ -183,29 +227,11 @@
             justify-items: center;
         }
 
-        .native-video-wrapper {
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        .reel-wrapper {
             width: 100%;
-            max-width: 300px; 
-            aspect-ratio: 9 / 16; /* Perfect mobile video ratio */
+            max-width: 320px;
+            aspect-ratio: 9 / 16; /* Perfect vertical mobile ratio */
             border: 1px solid #333;
-            transition: transform 0.3s ease;
-        }
-
-        .native-video-wrapper:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4);
-            border-color: #e50914;
-        }
-
-        .native-video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: #111;
         }
 
         /* Skills Section */
@@ -293,13 +319,12 @@
         <h2 class="section-title">Featured <span>Project</span></h2>
         <div class="yt-grid">
             
-            <div class="yt-card">
-                <div class="video-wrapper">
-                    <iframe src="https://drive.google.com/file/d/1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
-                <div class="yt-info">
-                    <h3>Recent Long-Form Edit</h3>
-                </div>
+            <div class="custom-video-card long-form-wrapper" onclick="loadDriveVideo(this, '1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t')">
+                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1UcWA5aYdl5w2DspOlHfT13b1m7CQYN4t&sz=w1200" alt="Long Form Cover">
+                <div class="play-btn">▶</div>
+            </div>
+            <div class="yt-info">
+                <h3>Recent Long-Form Edit</h3>
             </div>
 
         </div>
@@ -309,32 +334,24 @@
         <h2 class="section-title">Short-Form <span>Edits</span></h2>
         <div class="reels-grid">
             
-            <div class="native-video-wrapper">
-                <video controls playsinline preload="metadata">
-                    <source src="video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY')">
+                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1O9-AVF_OHmCMgIYRSqOO-v-gHADhZ5AY&sz=w800" alt="Reel 1 Cover">
+                <div class="play-btn">▶</div>
             </div>
             
-            <div class="native-video-wrapper">
-                <video controls playsinline preload="metadata">
-                    <source src="video2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP')">
+                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1wSu06MkCmdBbyEt8e-78GTN8Z6h0u_eP&sz=w800" alt="Reel 2 Cover">
+                <div class="play-btn">▶</div>
             </div>
             
-            <div class="native-video-wrapper">
-                <video controls playsinline preload="metadata">
-                    <source src="video3.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1hYpASfF3ugxREdH9no-YW0Niaad0anjM')">
+                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1hYpASfF3ugxREdH9no-YW0Niaad0anjM&sz=w800" alt="Reel 3 Cover">
+                <div class="play-btn">▶</div>
             </div>
             
-            <div class="native-video-wrapper">
-                <video controls playsinline preload="metadata">
-                    <source src="video4.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="custom-video-card reel-wrapper" onclick="loadDriveVideo(this, '1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY')">
+                <img class="cover-img" src="https://drive.google.com/thumbnail?id=1fqlehh4bpImVn1lH7ckOTuxKSZW6WiwY&sz=w800" alt="Reel 4 Cover">
+                <div class="play-btn">▶</div>
             </div>
 
         </div>
@@ -357,5 +374,11 @@
         <p>&copy; 2026 Vatsa. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        function loadDriveVideo(element, videoId) {
+            // Replaces the cover image and play button with the actual Google Drive video player
+            element.innerHTML = `<iframe src="https://drive.google.com/file/d/${videoId}/preview?autoplay=1" allow="autoplay" allowfullscreen></iframe>`;
+        }
+    </script>
 </body>
 </html>
